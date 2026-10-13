@@ -175,7 +175,7 @@ export function PublicFooter() {
         </div>
       </div>
       <div className="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
-        © 2026 BandBridge IELTS. All rights reserved.
+        © 2026 B IELTS. All rights reserved.
       </div>
     </footer>
   );

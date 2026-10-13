@@ -88,3 +88,11 @@ body {
   background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
   background-size: 22px 22px;
 }
+
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE, Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

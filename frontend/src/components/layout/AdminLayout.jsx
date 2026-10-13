@@ -38,7 +38,7 @@ export function AdminLayout() {
           <span className="text-[10px] uppercase tracking-wider text-slate-400">Admin Console</span>
         </div>
       </div>
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto scrollbar-hide">
         {items.map((item) => {
           const active = item.end ? loc.pathname === item.to : loc.pathname.startsWith(item.to);
           const Icon = item.icon;
