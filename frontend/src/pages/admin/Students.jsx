@@ -22,6 +22,7 @@ export default function Students() {
   const [created, setCreated] = useState(null);
 
   const load = () => api.get("/admin/students", { params: { search, page, page_size: 15 } }).then(({ data }) => setData(data)).catch(() => setData({ items: [], total: 0 }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- load closes over search/page already; re-adding it would re-run on every render
   useEffect(() => { const t = setTimeout(load, 300); return () => clearTimeout(t); }, [search, page]);
   useEffect(() => { api.get("/packages").then(({ data }) => setPkgs(data.items)); api.get("/admin/batches").then(({ data }) => setBatches(data.items)).catch(() => {}); }, []);
 

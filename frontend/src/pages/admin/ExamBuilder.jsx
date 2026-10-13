@@ -19,6 +19,7 @@ export default function ExamBuilder() {
   const nav = useNavigate();
   const [exam, setExam] = useState(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- nav is a stable useNavigate() reference
   useEffect(() => { api.get(`/exams/${examId}`).then(({ data }) => setExam(data)).catch((e) => { toast.error(apiError(e)); nav("/admin/exams"); }); }, [examId]);
 
   const addSection = () => setExam((x) => ({ ...x, sections: [...(x.sections || []), { id: crypto.randomUUID(), skill: x.kind === "full" ? "listening" : x.kind, order: x.sections.length, instructions: "", audio_url: "", passages: [], questions: [] }] }));

@@ -19,6 +19,7 @@ export default function ExamIntro() {
       const e = data.items.find((x) => x.id === examId);
       if (!e) { toast.error("Exam not found"); nav("/app/mock-tests"); } else setExam(e);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- nav is a stable useNavigate() reference
   }, [examId]);
 
   const start = async () => {

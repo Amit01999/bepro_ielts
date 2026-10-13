@@ -43,6 +43,7 @@ export default function ExamRunner() {
       setAnswers(data.attempt.answers || {});
       setSectionIdx(data.attempt.section_index || 0);
     } catch (e) { toast.error(apiError(e)); nav("/app/mock-tests"); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- nav is a stable useNavigate() reference
   }, [attemptId]);
 
   useEffect(() => { load(); }, [load]);
@@ -73,6 +74,7 @@ export default function ExamRunner() {
     window.addEventListener("online", on);
     window.addEventListener("offline", off);
     return () => { window.removeEventListener("online", on); window.removeEventListener("offline", off); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally only wiring listeners once; flush reads dirty.current fresh each call
   }, []);
 
   // anti-cheat
@@ -90,6 +92,7 @@ export default function ExamRunner() {
     document.addEventListener("visibilitychange", vis);
     window.addEventListener("blur", blur);
     return () => { document.removeEventListener("visibilitychange", vis); window.removeEventListener("blur", blur); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- nav is a stable useNavigate() reference
   }, [attemptId, current]);
 
   const flush = async () => {

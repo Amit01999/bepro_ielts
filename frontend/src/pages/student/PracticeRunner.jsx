@@ -16,6 +16,7 @@ export default function PracticeRunner() {
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- nav is a stable useNavigate() reference
   useEffect(() => { api.get(`/student/practice/${id}`).then(({ data }) => setSet(data)).catch((e) => { toast.error(apiError(e)); nav("/app/practice"); }); }, [id]);
 
   const submit = async () => {
