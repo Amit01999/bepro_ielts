@@ -1,0 +1,108 @@
+{
+  "project_name": "IELTS Academic & General Training Exam Preparation Platform",
+  "design_archetype": "Swiss & High-Contrast mixed with Academic Trust & Precision",
+  "theme": "Light theme primary for exam focus & high contrast readability, with deep dark navy structural headers and high-density dashboard layouts.",
+  "typography": {
+    "font_family_headings": "Plus Jakarta Sans, sans-serif",
+    "font_family_body": "IBM Plex Sans, sans-serif",
+    "font_family_mono": "JetBrains Mono, monospace",
+    "font_import_url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+    "sizes": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3": "text-xl sm:text-2xl font-bold tracking-tight",
+      "h4": "text-lg sm:text-xl font-semibold",
+      "body": "text-base leading-relaxed",
+      "small_label": "text-xs uppercase tracking-wider font-semibold"
+    }
+  },
+  "colors": {
+    "primary": "#0F172A",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#1E293B",
+    "accent_gold": "#D97706",
+    "accent_gold_light": "#FEF3C7",
+    "accent_blue": "#2563EB",
+    "accent_blue_light": "#EFF6FF",
+    "background_light": "#F8FAFC",
+    "card_background": "#FFFFFF",
+    "text_main": "#0F172A",
+    "text_muted": "#475569",
+    "border": "#E2E8F0",
+    "band_scores": {
+      "band_9": "#047857",
+      "band_8": "#059669",
+      "band_7": "#2563EB",
+      "band_6": "#D97706",
+      "band_5": "#DC2626"
+    },
+    "exam_status": {
+      "answered": "#1E293B",
+      "flagged": "#D97706",
+      "unanswered": "#F1F5F9",
+      "active": "#2563EB"
+    }
+  },
+  "visual_enhancers": {
+    "borders": "1px solid #E2E8F0 with crisp sharp or subtle 6px rounded edges",
+    "shadows": "shadow-sm hover:shadow-md transition-shadow duration-200",
+    "card_style": "Cardless or clean white panel with 1px border stroke, zero heavy gradients",
+    "texture": "Subtle noise background accent on hero sections, crisp line separators for split-screen exam mode"
+  },
+  "exam_interface_specs": {
+    "distraction_free_mode": true,
+    "header": {
+      "timer_sticky": true,
+      "low_time_alert": "Blinks red when remaining time < 5 minutes",
+      "volume_control": true,
+      "submit_confirmation_dialog": true
+    },
+    "reading_layout": "Split screen: left passage scrollable (50% width), right questions (50% width)",
+    "listening_layout": "Top audio player with waveform & timestamp + right question cards with progress tracker",
+    "writing_layout": "Left task prompt & instructions (40% width), right clean editor with auto word-count & character counter (60% width)",
+    "speaking_layout": "Mic diagnostic check wizard, audio wave activity meter, timer countdown, auto recording player",
+    "bottom_nav_bar": "Sticky bottom strip containing question buttons 1-40 with dual-indicator state (color + icon/underline) for accessibility"
+  },
+  "image_urls": {
+    "hero_student_library": {
+      "url": "https://images.pexels.com/photos/6549587/pexels-photo-6549587.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Student working on laptop in modern quiet library",
+      "category": "Hero & Marketing Sections"
+    },
+    "student_collaborative": {
+      "url": "https://images.pexels.com/photos/5940715/pexels-photo-5940715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Diverse group of students preparing for IELTS exam",
+      "category": "Courses, Batches & Student Success"
+    }
+  },
+  "grids": {
+    "dashboard_bento": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "marketing_features": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+    "exam_split_screen": "grid grid-cols-1 lg:grid-cols-12 h-[calc(100vh-64px)] overflow-hidden"
+  },
+  "motion": {
+    "transitions": "transition-all duration-200 ease-in-out",
+    "hover_lift": "hover:-translate-y-0.5 hover:shadow-md",
+    "framer_motion_stagger": "Stagger child variants with 0.05s delay"
+  },
+  "accessibility": {
+    "contrast_ratio": "APCA compliant minimum 4.5:1 for normal text",
+    "question_navigation_states": "Answered uses solid bg + check icon; Flagged uses yellow bg + flag icon; Never color alone",
+    "keyboard_navigation": "Full tab index support during computer-delivered exam mode"
+  },
+  "instructions_to_main_agent": [
+    "Use standard React .js and .jsx components matching existing codebase in /app/frontend/src/.",
+    "Ensure every single interactive element (buttons, tabs, inputs, exam navigation buttons, band score badges, menu items, table rows) includes a clear data-testid attribute in kebab-case (e.g. data-testid='start-mock-test-button').",
+    "Implement distinct pages and routes for Public Website (Home, Academic, General Training, Prep modules, Free Mock Test, Pricing, Courses/Batches, Success Stories, FAQ, Login, Register), Student Dashboard (Overview, Practice Center, Mock Exam Hub, Band Score Analytics, AI Evaluation Reports, Subscription), and Admin Dashboard (Students, Batches, Teachers, Exam Builder, Question Bank, AI Settings, Financial Reports).",
+    "For the computer-based IELTS Exam Interface, build true-to-life split-screen layouts for Reading, Listening, Writing, and Speaking with sticky top header timer, font size adjustment controls, volume control, question navigator bar at the bottom with 1-40 question pills, answered/flagged badges, live word count for writing, and audio recording controls for speaking.",
+    "Include Band Score Indicator components displaying sub-scores (0-9 with 0.5 step accuracy) and overall Band scores with detailed criteria radar/bar breakdown (Fluency, Lexical Resource, Grammatical Range, Coherence).",
+    "Keep styling crisp, academic, highly structured, and clean. DO NOT add excessive gradients, glassmorphism blur overload, or generic SaaS marketing slop."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Never use generic centered layouts or unstyled default HTML select/inputs. Use customizable Shadcn components from /app/frontend/src/components/ui/.",
+    "Avoid using transparent background headers without backdrop blur or solid fill.",
+    "Always set hover text color explicitly alongside hover background color (e.g., hover:bg-slate-900 hover:text-white).",
+    "Maintain high spacing hierarchy using p-6 to p-12 for dashboard panels and hero sections.",
+    "Verify dark and light mode variable compatibility in tailwind.config.js and index.css."
+  ]
+}

@@ -1,0 +1,1046 @@
+/* ==========================================================================
+   BePro — Home page premium "academic" theme
+   Palette: navy ink, crisp white/paper, warm gold accent, blue + emerald skill accents.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap');
+
+.forest-home {
+  --fh-cream: #F8FAFC;
+  --fh-cream-2: #EEF2F9;
+  --fh-paper: #FFFFFF;
+  --fh-ink: #0F172A;
+  --fh-ink-70: rgba(15, 23, 42, 0.72);
+  --fh-ink-55: rgba(15, 23, 42, 0.56);
+  --fh-line: rgba(15, 23, 42, 0.10);
+  --fh-line-soft: rgba(15, 23, 42, 0.06);
+  --fh-deep: #0B1220;
+  --fh-deep-2: #16233B;
+  --fh-deep-3: #223252;
+  --fh-blue: #2563EB;
+  --fh-blue-soft: #E4ECFC;
+  --fh-gold: #D97706;
+  --fh-gold-dark: #B45309;
+  --fh-gold-light: #F2A93B;
+  --fh-gold-soft: #FBEBCF;
+  --fh-shadow-rgb: 15, 23, 42;
+  --fh-radius-lg: 26px;
+  --fh-radius-md: 18px;
+  --fh-serif: "Fraunces", "Plus Jakarta Sans", serif;
+  background: var(--fh-cream);
+  color: var(--fh-ink);
+  font-feature-settings: "ss01" 1;
+  overflow-x: clip;
+}
+
+.forest-home main {
+  display: block;
+  overflow-x: clip;
+}
+
+.forest-home h1,
+.forest-home h2,
+.forest-home h3,
+.forest-home h4 {
+  color: var(--fh-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.forest-home h2 {
+  font-size: clamp(1.9rem, 1.5rem + 1.8vw, 2.85rem);
+  font-weight: 800;
+}
+
+.forest-home h2 em,
+.forest-home h1 em {
+  font-family: var(--fh-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--fh-gold-dark);
+}
+
+.forest-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.forest-section {
+  padding: 96px 0;
+  position: relative;
+}
+
+.forest-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.forest-section-heading>p {
+  max-width: 360px;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 860px) {
+  .forest-section {
+    padding: 68px 0;
+  }
+
+  .forest-section-heading {
+    align-items: flex-start;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Eyebrow pill                                                          */
+/* -------------------------------------------------------------------- */
+
+.forest-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--fh-blue-soft);
+  color: var(--fh-deep-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--fh-line);
+}
+
+.forest-eyebrow svg {
+  color: var(--fh-gold-dark);
+}
+
+/* -------------------------------------------------------------------- */
+/* Decorative linework — kept out of the academic layout                */
+/* -------------------------------------------------------------------- */
+
+.forest-botanical {
+  display: none;
+}
+
+/* -------------------------------------------------------------------- */
+/* Buttons                                                                */
+/* -------------------------------------------------------------------- */
+
+.forest-button {
+  height: 56px !important;
+  padding: 0 32px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: -0.01em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  border: 1.5px solid transparent;
+}
+
+.forest-button:hover {
+  transform: translateY(-2px);
+}
+
+.forest-button:active {
+  transform: translateY(0);
+}
+
+.forest-button-gold {
+  background: linear-gradient(135deg, var(--fh-gold-light), var(--fh-gold)) !important;
+  color: #2A1503 !important;
+  box-shadow: 0 14px 30px -8px rgba(217, 119, 6, 0.5);
+}
+
+.forest-button-gold:hover {
+  box-shadow: 0 18px 36px -6px rgba(217, 119, 6, 0.56);
+}
+
+.forest-button-outline {
+  background: transparent !important;
+  color: var(--fh-deep-2) !important;
+  border-color: var(--fh-deep-2) !important;
+  box-shadow: none;
+}
+
+.forest-button-outline:hover {
+  background: var(--fh-deep-2) !important;
+  color: #fff !important;
+}
+
+.forest-button-green {
+  background: var(--fh-paper) !important;
+  color: var(--fh-deep-2) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 16px 34px -8px rgba(217, 119, 6, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.forest-button-green:hover {
+  background: var(--fh-gold-soft) !important;
+  box-shadow: 0 20px 40px -6px rgba(217, 119, 6, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* -------------------------------------------------------------------- */
+/* Hero                                                                   */
+/* -------------------------------------------------------------------- */
+
+.forest-hero {
+  padding: 76px 0 0;
+  background:
+    radial-gradient(760px 420px at 88% -10%, rgba(217, 119, 6, 0.08), transparent 60%),
+    radial-gradient(700px 460px at -8% 15%, rgba(37, 99, 235, 0.10), transparent 60%),
+    var(--fh-cream);
+}
+
+.forest-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 75%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 75%);
+  pointer-events: none;
+}
+
+.forest-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+  padding-bottom: 88px;
+}
+
+.forest-hero-eyebrow {
+  background: var(--fh-paper);
+  box-shadow: 0 4px 16px rgba(var(--fh-shadow-rgb), 0.08);
+}
+
+.forest-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fh-gold);
+  box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.6);
+  animation: forest-pulse 2s infinite;
+}
+
+@keyframes forest-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.55);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(217, 119, 6, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
+  }
+}
+
+.forest-hero-title {
+  margin-top: 24px;
+  font-size: clamp(2.5rem, 1.7rem + 3.4vw, 4.2rem);
+  font-weight: 800;
+}
+
+.forest-heading-break {
+  display: block;
+}
+
+.forest-hero-description {
+  margin-top: 24px;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  max-width: 520px;
+  color: var(--fh-ink-70);
+}
+
+.forest-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.forest-hero-reassurance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fh-ink-70);
+}
+
+.forest-hero-visual {
+  position: relative;
+  padding: 8px 28px 40px 8px;
+}
+
+.forest-photo-frame {
+  position: relative;
+  border-radius: var(--fh-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(var(--fh-shadow-rgb), 0.35);
+}
+
+.forest-photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -14px auto auto -14px;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--fh-gold-light);
+  border-radius: var(--fh-radius-lg);
+  z-index: -1;
+}
+
+.forest-hero-photo {
+  display: block;
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+}
+
+.forest-photo-caption {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--fh-radius-md);
+  background: rgba(11, 18, 32, 0.6);
+  backdrop-filter: blur(10px);
+  color: #F1F5F9;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.forest-photo-caption svg {
+  color: var(--fh-gold-light);
+  flex-shrink: 0;
+}
+
+.forest-photo-caption strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.forest-ai-tag {
+  position: absolute;
+  top: 26px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px -10px rgba(var(--fh-shadow-rgb), 0.35);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--fh-deep-2);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.forest-ai-tag svg {
+  color: var(--fh-gold-dark);
+}
+
+.forest-band-preview {
+  position: absolute;
+  left: -28px;
+  top: 398px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 280px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: var(--fh-paper);
+  box-shadow: 0 26px 50px -16px rgba(var(--fh-shadow-rgb), 0.4);
+  border: 1px solid var(--fh-line-soft);
+}
+
+.forest-band-title {
+  font-family: var(--fh-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--fh-ink);
+  margin-top: 2px;
+}
+
+.forest-preview-note {
+  font-size: 0.72rem;
+  color: var(--fh-ink-55);
+  margin-top: 2px;
+}
+
+.forest-band-trend {
+  color: var(--fh-gold-dark);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.forest-visual-footnote {
+  margin-top: 88px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--fh-ink-55);
+}
+
+.forest-hero-bottom {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px;
+  border-top: 1px solid var(--fh-line);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fh-ink-55);
+}
+
+.forest-hero-bottom span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--fh-deep-2);
+}
+
+@media (max-width: 980px) {
+  .forest-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding-bottom: 56px;
+  }
+
+  .forest-hero-visual {
+    padding: 8px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .forest-ai-tag {
+    right: 12px;
+    top: 16px;
+  }
+
+  .forest-band-preview {
+    left: 12px;
+    width: calc(100% - 24px);
+  }
+
+  .forest-photo-frame::before {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .forest-heading-break {
+    display: none;
+  }
+
+  .forest-hero-photo {
+    height: 340px;
+  }
+
+  .forest-band-preview {
+    position: static;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .forest-ai-tag {
+    position: static;
+    margin-top: 14px;
+    display: inline-flex;
+  }
+
+  .forest-hero-visual {
+    padding: 0;
+  }
+
+  .forest-visual-footnote {
+    margin-top: 24px;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Stats                                                                  */
+/* -------------------------------------------------------------------- */
+
+.forest-stats {
+  background: linear-gradient(180deg, var(--fh-deep), var(--fh-deep-2));
+  padding: 56px 0;
+  position: relative;
+}
+
+.forest-stats::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+.forest-stats-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.forest-stats-grid>div {
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.forest-stats-grid>div:first-child {
+  border-left: none;
+}
+
+@media (max-width: 720px) {
+  .forest-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
+
+  .forest-stats-grid>div:nth-child(3) {
+    border-left: none;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Modules                                                                */
+/* -------------------------------------------------------------------- */
+
+.forest-modules {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.forest-module {
+  position: relative;
+  padding: 32px 26px 26px;
+  background: var(--fh-paper);
+  border: 1px solid var(--fh-line);
+  border-radius: var(--fh-radius-lg);
+  box-shadow: 0 2px 6px rgba(var(--fh-shadow-rgb), 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.forest-module:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 24px 44px -16px rgba(var(--fh-shadow-rgb), 0.18);
+  border-color: transparent;
+}
+
+.forest-module-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.forest-module-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forest-module-top>span {
+  font-family: var(--fh-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--fh-ink-55);
+}
+
+.forest-module-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--fh-line);
+}
+
+.forest-module-bottom span:first-child {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--fh-ink-55);
+}
+
+.forest-module-bottom span:last-child {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+@media (max-width: 980px) {
+  .forest-modules {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .forest-modules {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Journey / steps                                                        */
+/* -------------------------------------------------------------------- */
+
+.forest-journey {
+  background: var(--fh-cream-2);
+}
+
+.forest-journey h2 {
+  margin-top: 12px;
+}
+
+.forest-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+}
+
+.forest-steps::before {
+  content: "";
+  position: absolute;
+  top: 23px;
+  left: 12%;
+  right: 12%;
+  height: 1.5px;
+  background: repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.25) 0 8px, transparent 8px 16px);
+}
+
+.forest-step {
+  position: relative;
+}
+
+.forest-step-marker {
+  position: relative;
+  z-index: 1;
+}
+
+.forest-step-marker span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--fh-deep-3), var(--fh-deep-2));
+  color: var(--fh-gold-light);
+  font-family: var(--fh-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 22px -8px rgba(var(--fh-shadow-rgb), 0.35);
+}
+
+@media (max-width: 860px) {
+  .forest-steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+  }
+
+  .forest-steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .forest-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Feedback / analytics                                                   */
+/* -------------------------------------------------------------------- */
+
+.forest-feedback {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.forest-feedback-subtitle {
+  margin-top: 14px;
+  font-family: var(--fh-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--fh-deep-2);
+}
+
+.forest-disclaimer {
+  margin-top: 24px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--fh-ink-55);
+  border-left: 2px solid var(--fh-gold-light);
+  padding-left: 14px;
+}
+
+.forest-analytics-surround {
+  position: relative;
+}
+
+.forest-analytics-card {
+  position: relative;
+  z-index: 1;
+  background: var(--fh-paper);
+  border-radius: 28px;
+  border: 1px solid var(--fh-line);
+  box-shadow: 0 32px 60px -20px rgba(var(--fh-shadow-rgb), 0.22);
+  padding: 32px;
+}
+
+.forest-analytics-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--fh-line);
+}
+
+.forest-analytics-header svg {
+  color: var(--fh-gold-dark);
+  margin-top: 2px;
+}
+
+.forest-analytics-header h4 {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.forest-analytics-header p {
+  font-size: 0.8rem;
+  margin-top: 2px;
+  color: var(--fh-ink-55);
+}
+
+.forest-analytics-header span {
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--fh-line);
+  color: var(--fh-ink-55);
+  white-space: nowrap;
+}
+
+.forest-analytics-summary {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 22px 0;
+}
+
+.forest-analytics-summary .forest-eyebrow {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fh-ink-55);
+  font-size: 0.65rem;
+}
+
+.forest-analytics-summary p {
+  margin-top: 6px;
+  font-family: var(--fh-serif);
+  font-weight: 600;
+  font-size: 2.1rem;
+  color: var(--fh-ink);
+}
+
+.forest-analytics-summary p span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--fh-ink-55);
+}
+
+.forest-analytics-summary>span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--fh-deep-2);
+  background: var(--fh-blue-soft);
+  padding: 7px 12px;
+  border-radius: 999px;
+}
+
+.forest-skill-score {
+  text-align: center;
+}
+
+.forest-score-track {
+  width: 8px;
+  height: 54px;
+  margin: 0 auto 10px;
+  border-radius: 999px;
+  background: var(--fh-line-soft);
+  overflow: hidden;
+  position: relative;
+}
+
+.forest-score-track>div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--fh-gold-light), var(--fh-gold));
+}
+
+.forest-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--fh-ink-70);
+}
+
+.forest-progress-label strong {
+  color: var(--fh-gold-dark);
+  font-size: 0.9rem;
+}
+
+.forest-progress {
+  margin-top: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--fh-line-soft);
+  overflow: hidden;
+}
+
+.forest-progress>div {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--fh-blue), var(--fh-gold));
+}
+
+.forest-progress-caption {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--fh-ink-55);
+}
+
+.forest-analytics-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--fh-ink-55);
+}
+
+.forest-analytics-caption svg {
+  color: var(--fh-gold-dark);
+}
+
+@media (max-width: 980px) {
+  .forest-feedback {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .forest-analytics-surround {
+    max-width: 480px;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Testimonials                                                          */
+/* -------------------------------------------------------------------- */
+
+.forest-testimonials {
+  background: var(--fh-paper);
+}
+
+.forest-testimonial {
+  position: relative;
+  padding: 30px 28px;
+  background: var(--fh-cream);
+  border: 1px solid var(--fh-line);
+  border-radius: var(--fh-radius-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forest-testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -18px rgba(var(--fh-shadow-rgb), 0.18);
+}
+
+.forest-testimonial blockquote {
+  font-family: var(--fh-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--fh-ink);
+}
+
+.forest-testimonial-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.forest-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--fh-deep-3), var(--fh-deep));
+  color: var(--fh-gold-light);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.forest-testimonial-person p {
+  font-weight: 700;
+  color: var(--fh-ink);
+  font-size: 0.9rem;
+}
+
+.forest-testimonial-person span {
+  font-size: 0.75rem;
+  color: var(--fh-ink-55);
+}
+
+/* -------------------------------------------------------------------- */
+/* Final CTA                                                              */
+/* -------------------------------------------------------------------- */
+
+.forest-final-cta {
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+  padding: 100px 0;
+  text-align: center;
+  background: radial-gradient(900px 520px at 50% -10%, rgba(217, 119, 6, 0.14), transparent 60%), linear-gradient(180deg, var(--fh-deep-2), var(--fh-deep));
+  color: #F1F5F9;
+}
+
+.forest-final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(600px 340px at 50% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
+  mask-image: radial-gradient(600px 340px at 50% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
+  pointer-events: none;
+}
+
+.forest-final-cta .forest-container {
+  position: relative;
+  z-index: 1;
+}
+
+.forest-final-cta h2 {
+  color: #F8FAFC;
+}
+
+.forest-final-cta h2 em {
+  color: var(--fh-gold-light);
+}
+
+.forest-final-cta p {
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.forest-final-cta .forest-eyebrow {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #F1F5F9;
+}
+
+.forest-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(242, 169, 59, 0.14);
+  border: 1px solid rgba(242, 169, 59, 0.3);
+  color: var(--fh-gold-light);
+  margin-bottom: 22px;
+}
+
+.forest-final-cta h2 {
+  margin-top: 6px;
+}
+
+.forest-final-cta .forest-button {
+  margin-top: 36px;
+}
+
+.forest-cta-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 0.82rem;
+  color: rgba(226, 232, 240, 0.65);
+}
+
+.forest-cta-note svg {
+  color: var(--fh-gold-light);
+}
+
+@media (max-width: 640px) {
+  .forest-final-cta {
+    padding: 76px 0;
+  }
+}
+
+/* PublicFooter ships with a global mt-24; on this page the final CTA already
+   ends in a full-bleed dark band, so that gap just shows bare page background. */
+.forest-home footer[data-testid="public-footer"] {
+  margin-top: 0;
+}

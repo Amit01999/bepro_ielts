@@ -1,0 +1,46 @@
+{
+  "summary": "Comprehensive backend + frontend smoke testing for BePro IELTS platform. Ran a 19-test pytest suite covering auth, entitlements, reading e2e (with server timer authority + idempotent submit + 409 on save-after-submit), listening, practice, subscription (simulated), admin CRUD, exam publish validation, exam-ID code entry, and writing AI evaluation. 18 passed, 1 skipped (quota exhaustion: seeded practice sets are ALL is_free=true so consumption never triggers - see notes). Frontend verified: home renders, student login->/app dashboard, mock tests list, exam intro rules page, exam runner with data-testid='exam-timer' (19:56 visible), question navigator, passage/questions rendered; admin login->/admin dashboard cards render, Students table lists 7 rows with STU-2026-* IDs.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/student/practice/{id}/submit",
+        "issue": "Free practice sets never consume the practice quota (seeded practice is all is_free=true), so a free-plan student can effectively submit unlimited practice. If this is intentional (free-plan can use free-tagged items freely), it's fine — but current UI shows 'practice_remaining: 10' which is misleading. Consider only counting is_free=false submissions or clarifying the counter."
+      },
+      {
+        "endpoint": "/api/exams/{id}/start",
+        "issue": "Free-tagged exams also bypass entitlement consumption; combined with above this means free-plan users are only gated by non-free content availability. If desired, keep — but document."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Consider making at least one seeded practice set is_free=false so free-plan quota exhaustion (10 practice_sets) can be exercised end-to-end.",
+    "Optional: writing AI evaluation completed within ~20-40s during our poll; keep timeouts on frontend >=45s to avoid stale 'EVALUATING' UI."
+  ],
+  "critical_code_review_comments": [
+    "exam_router.get_attempt returns 'attempt' dict but on auto-expire returns {**att, 'status': 'AUTO_SUBMITTED'} without persisting the changed status on the returned copy from a re-read; harmless but slightly inconsistent.",
+    "student_router.submit_practice consumes entitlement BEFORE scoring — if scoring throws, the quota is still consumed. Wrap in try/except or consume post-scoring.",
+    "auth_router._gen_student_id uses count-based numbering (race-prone under concurrent registrations). Consider a Mongo counters collection with findOneAndUpdate($inc).",
+    "entitlements.active_subscription always falls back to ensure_free_subscription which does an insert — a benign side-effect but adds writes for every check on paid users if their sub expired.",
+    "recompute_overall exists in both exam_router and ai_router (duplicated logic). Consider moving to a shared module."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {
+    "backend": "94% (18/19; 1 skipped due to seed data, no failures)",
+    "frontend": "100% for smoke flows tested"
+  },
+  "test_credentials": "Admin nirmul554@gmail.com/Admin@12345, Student student@BePro.com/Student@123 - both verified working",
+  "seed_data_creation": "Test created: 4-5 test users (test_*@example.com, quota_*@example.com, admincreate_*@example.com, batchstu_*@example.com); 2 packages (PKG-*, Test Basic); 1 batch; 1 draft reading exam; 1 exam assignment (EX-*). Non-destructive; can be cleaned by removing users with @example.com domain.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend is solid. All priority flows (reading e2e with server timer authority, idempotent submit, no accepted_answers leak, writing AI via Gemini, admin CRUD, RBAC 403, exam-ID entry, exam publish validation) verified via pytest. Frontend verified via Playwright for login/dashboard/mock tests/exam runner/admin. The one skipped test is because ALL seeded practice sets have is_free=true — free-plan students never consume the practice quota. Re-run: `cd /app && python -m pytest backend/tests/backend_test.py -v --junitxml=/app/test_reports/pytest/pytest_results.xml`."
+}

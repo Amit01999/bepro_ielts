@@ -1,0 +1,44 @@
+{
+  "summary": "Comprehensive backend + frontend validation of the NEW Full 4-skill Mock + Speaking exam features. Backend: 6/6 pytest cases passed in /app/backend/tests/test_full_mock_speaking.py (Full Mock listing with 4 sections in correct order, no accepted_answers/explanation leak, server-timer authority on refresh, save answers + speaking multipart upload + submit -> combined result, listening/reading bands immediate, writing+speaking QUEUED->COMPLETED via Gemini within ~45s, overall_band == half-band-rounded avg of the 4 skill bands, duplicate submit returns already:true with same result_id, save-after-submit -> 409, Speaking standalone with part/prep_seconds/speak_seconds fields, per-question audio upload, GET /attempts/{aid}/speaking/audio/{qnum} returns mime+b64 for owner and 403 for another student, speaking evaluation_id set on skills.speaking with 4 criteria fluency_coherence/lexical_resource/grammatical_range/pronunciation). Frontend (Playwright): login as student ok, Mock Tests page lists Full IELTS Mock Test 1 and Speaking Practice Test 1, ExamIntro rules->Start Exam works, ExamRunner shows data-testid='exam-timer' (169:56) and data-testid='mock-progress' stepper labeled Listening/Reading/Writing/Speaking, 'Next section' advances listening->reading->writing->speaking, speaking section renders data-testid='speaking-device-check' with 'start-device-check-btn', Speaking standalone also shows device-check immediately, result detail page for the Full Mock renders Overall Band 1.0, per-skill bands (Listening/Reading/Writing/Speaking), and data-testid='speaking-feedback' section.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "POST /api/attempts/{aid}/speaking/upload",
+        "issue": "Transcription errors are swallowed silently (transcript='') — that's acceptable for the demo but there is no observability (no log/status flag). Consider setting rec.status='transcribe_failed' when transcribe_audio raises so QA/teachers can see it."
+      },
+      {
+        "endpoint": "_finalize_attempt (routers/exam_router.py)",
+        "issue": "If the speaking Gemini eval fails, skills.speaking.status='FAILED' is set but the result 'status' is recomputed to COMPLETED excluding the missing band — overall_band will average only the succeeded skills (may be misleadingly high/low). Consider surfacing 'partial_completion' flag."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_full_mock_speaking.py",
+    "/app/test_reports/pytest/pytest_full_speaking.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "routers/exam_router.py _finalize_attempt: `has_pending` block computes overall_band twice with a ternary that always calls overall_band(bands) — simplify to `overall_band(bands) if bands else None` (or None while pending) for clarity.",
+    "routers/exam_router.py speaking_upload: transcription runs inline on the request path — for long uploads this could exceed HTTP timeout. Consider deferring to a background task (asyncio.create_task) and storing transcript later.",
+    "routers/ai_router.py has TWO overall recompute helpers (_recompute_result_overall) duplicated with recompute_overall in exam_router — same duplication called out in iteration_1; still not extracted to a shared module.",
+    "SpeakingStage.jsx: uploadRecording retries at most once. If the network is flaky and both fail, the student cannot easily 'submit anyway' — the Submit Speaking button is disabled until statuses[q.number] is truthy for every question. Consider a 'Skip / mark absent' path or allow submitting with failed uploads.",
+    "SpeakingStage.jsx: MediaRecorder stream is created from a single getUserMedia call at device-check; if that stream is stopped by the browser (tab hidden long enough) recording will silently produce empty blobs. No re-acquire logic."
+  ],
+  "updated_files": ["/app/backend/tests/test_full_mock_speaking.py"],
+  "success_rate": {
+    "backend": "100% (6/6 new tests)",
+    "frontend": "100% for the new Full Mock + Speaking UI paths tested"
+  },
+  "test_credentials": "Student: student@BePro.com/Student@123 (verified). Admin: nirmul554@gmail.com/Admin@12345.",
+  "seed_data_creation": "Test only registered a second student (other_*@example.com) for the 403 audio-retrieval assertion. Full Mock and Speaking exam attempts + results are persisted for the sample student — safe to leave.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All new Full Mock + Speaking flows are green. Re-run: `python -m pytest /app/backend/tests/test_full_mock_speaking.py -v -o addopts=''` (project pytest.ini forces -n=auto via xdist so pass -o addopts='' to disable and get clean output). Whisper on the dummy webm often returns empty transcript — the eval still produces a band from Gemini using the '(no speech recorded)' fallback. The frontend uses shadcn Radix checkbox (role=checkbox) on ExamIntro — Playwright's .check() on native input won't work; use page.locator('[role=\"checkbox\"]').click(force=True).",
+  "rca of the issue": "N/A — no regressions found."
+}
